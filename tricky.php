@@ -191,3 +191,53 @@ try {
 
 /********/
 
+// Abstract Classes
+/**
+ * A not-particulary-well designed set of classes, for purposes of illustration.
+ */
+// final abstract class TelecommunicationsDevice // abstract classes cannot be final!
+// abstract final class TelecommunicationsDevice // abstract classes cannot be final!
+abstract class TelecommunicationsDevice
+{
+    protected $id_number = '';
+
+    protected function getIdNumber()
+    {
+        return $this->id_number; // abstract classes can have instance (object) variables
+    }
+
+    abstract public function sendMessage($recipientNumber, $message);
+
+}
+
+class Telephone extends TelecommunicationsDevice
+{
+    public function getPhoneNumber()
+    {
+        return $this->getIdNumber();
+    }
+
+    public function sendMessage($recipientNumber, $message)
+    {
+        return 'Sent Text Message ' . $message . ' to ' . $recipientNumber;
+    }
+
+}
+
+class Pager extends TelecommunicationsDevice
+{
+    public function getPagerNumber()
+    {
+        return $this->getIdNumber();
+    }
+
+    public function sendMessage($recipientNumber, $message)
+    {
+        return 'Paged ' . $recipientNumber . ' with this message: ' . $message;
+    }
+
+}
+
+// $cannotInstantiateAnAbstractClass = new TelecommunicationsDevice();
+
+
