@@ -219,7 +219,7 @@ class Telephone extends TelecommunicationsDevice
 
     public function sendMessage($recipientNumber, $message)
     {
-        return 'Sent Text Message ' . $message . ' to ' . $recipientNumber;
+        return 'Sent Text Message "' . $message . '" to ' . $recipientNumber;
     }
 
 }
@@ -240,4 +240,12 @@ class Pager extends TelecommunicationsDevice
 
 // $cannotInstantiateAnAbstractClass = new TelecommunicationsDevice();
 
+$phone = new Telephone();
+$pager = new Pager();
+
+$textMessage = 'My first fake text message.';
+$pagerMessage = 'Come here, Watson. I don\'t know what a pager is.';
+
+echo $phone->sendMessage(1234567890, $textMessage), PHP_EOL;
+echo $pager->sendMessage(9876543210, $pagerMessage), PHP_EOL;
 
