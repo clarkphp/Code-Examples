@@ -2,7 +2,6 @@
 
 $unixTimestampNow = time();
 $timestampNow = date('Y-m-d H:i:s', $unixTimestampNow);
-$startTimeJobOne = date('Y-m-d H:i:s', $unixTimestampNow + 10);
 
 $minute     = '*/3'; // every minute evenly-divisble by 3 (this is NOT three minutes from the moment this job is scheduled)
 $hour       = '*'; // every hour
