@@ -2,14 +2,28 @@
 $args = ZendJobQueue::getCurrentJobParams();
 
 /*
-There are three "OK" statuses in the ZendJobQueue class:
- [STATUS_OK] => 4
+There are three "OK" status constants in the ZendJobQueue class, and three
+"FAILED" status constants:
+
+ [STATUS_OK] => 4 - Scheduling Rule or Job status from the job
+     queue daemon, NOT used for setting status from within a job script!
+
  [JOB_STATUS_OK] => 16
- [OK] => 0 - this is the one to use for successful job completion
+
+ [OK] => 0 - this is the one to use for setting successful job completion
+     status from within the job script itself
+
+ [FAILED] => use this within a job script to tell the job queue daemon that
+     the job completed, but the script determined that it's intended task was not
+     achieved (logical failure)
+             
+ [STATUS_FAILED] =>
+
+ [STATUS_LOGICALLY_FAILED] =>
 
  If the status is NOT explicitly set by the job script, and the job
  successfully runs to completion, the status found in the GUI at
- Overview | Job Queue is "Completed". This means only that the PHP
+ Overview | Job Queue is "Completed". This means only that the PHP script
  ended without error; it says nothing about whether you consider the
  job to have successfully done what you expected it to.
 */
@@ -19,7 +33,7 @@ There are three "OK" statuses in the ZendJobQueue class:
 // Run 2. Set the status to JOB_STATUS_OK - results in "Job Logical Failure" event
 // Lesson: in spite of the name, don't use this to report a successful job completion
 //ZendJobQueue::setCurrentJobStatus(ZendJobQueue::JOB_STATUS_OK, 'JOB_STATUS_OK, not STATUS_OK, not OK');
-/* This is the response. Ssome details of course may differ for you. Get this info
+/* This is the response. Some details of course may differ for you. Get this info
    at Overview | Job Queue, expand the job, click on Output tab:
   
 HTTP/1.1 200 OK
@@ -58,7 +72,7 @@ Connection: close
 Content-Type: text/html
 */
 file_put_contents(
-    __DIR__ . '/' . basename(__FILE__) . '.out',
+    __FILE__ . '.out',
     'Arguments passed to Job: ' . var_export($args, true) . PHP_EOL,
     FILE_APPEND
 );
