@@ -7,12 +7,13 @@ To see this directive's value, go to **Configurations | Components**, expand "Ze
 Make sure you **Save** your directive changes (upper left), and then **Restart** (upper right).
 
 The current documentation pages are:
-[Directives](http://files.zend.com/help/Zend-Server-6/zend-server.htm#zend_job_queue_-_configuration_directives.htm)
-[Directives Summary](http://files.zend.com/help/Zend-Server-6/zend-server.htm#jqd-directives.html)
-[API](http://files.zend.com/help/Zend-Server-6/zend-server.htm#jobqueue-global-api.html)
-[ZendJobQueueClass](http://files.zend.com/help/Zend-Server-6/zend-server.htm#jobqueue-class-zendjobqueue.html)
-[Web API](http://files.zend.com/help/Zend-Server-6/zend-server.htm#job_queue_methods.htm)
-[Performance](http://files.zend.com/help/Zend-Server-6/zend-server.htm#optimizing_job_queue_performance.htm)
+
+- [Directives](http://files.zend.com/help/Zend-Server-6/zend-server.htm#zend_job_queue_-_configuration_directives.htm)
+- [Directives Summary](http://files.zend.com/help/Zend-Server-6/zend-server.htm#jqd-directives.html)
+- [API](http://files.zend.com/help/Zend-Server-6/zend-server.htm#jobqueue-global-api.html)
+- [ZendJobQueueClass](http://files.zend.com/help/Zend-Server-6/zend-server.htm#jobqueue-class-zendjobqueue.html)
+- [Web API](http://files.zend.com/help/Zend-Server-6/zend-server.htm#job_queue_methods.htm)
+- [Performance](http://files.zend.com/help/Zend-Server-6/zend-server.htm#optimizing_job_queue_performance.htm)
 
 ## Standalone Server Samples
 Run the samples by visiting the `job_starter_*.php` files in your browser.
