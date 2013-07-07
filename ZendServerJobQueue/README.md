@@ -18,6 +18,7 @@ Run the samples by visiting the `job_starter_*.php` files in your browser.
 1. Begin by taking a look at `job_starter_non_existent_target.php`
 2. Then see `job_starter_statuses.php` and `job_statuses.php`
 3. Next, look at a recurring job with `job_starter_recurring.php` and `job_one.php`
+4. See two jobs, one a predecessor of the other, in `job_starter_predecessor_sample_1.php`, `job_A_predecessor_sample_1.php`, and `job_B_predecessor_sample_1.php`
 
 ## Cluster Samples
 I will add sample scripts specfic to a Zend Server cluster.

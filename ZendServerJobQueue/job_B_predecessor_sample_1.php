@@ -1,5 +1,5 @@
 <?php
-// Job B writes to a file, finishing before Job A
+// Job A writes to a file
 // No direct communication between A and B
 
 $args = ZendJobQueue::getCurrentJobParams();

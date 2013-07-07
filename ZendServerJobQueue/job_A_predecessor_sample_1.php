@@ -1,5 +1,5 @@
 <?php
-// Job A writes to a file, taking longer than Job B to finish
+// Job A writes to a file
 // No direct communication between A and B
 
 $args = ZendJobQueue::getCurrentJobParams();
@@ -21,7 +21,7 @@ for ($i = 0; $i < 5; $i++) {
 ZendJobQueue::setCurrentJobStatus(ZendJobQueue::OK, 'A: Finished. See ' . $args['output_file_name']);
 
 function writeData($outputFilepath, $datum) {
-    sleep(5); // simulate taking some time to work
+    sleep(3); // simulate taking some time to work
     if (false === file_put_contents(
         $outputFilepath,
         date('Y-m-d H:i:s') . ' - A: iteration ' . $datum . PHP_EOL,
