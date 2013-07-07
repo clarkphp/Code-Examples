@@ -13,7 +13,7 @@ $jobName    = 'Job 1 Recurring via API';
 
 $q = new ZendJobQueue();
 $id = $q->createHttpJob(
-    '/job_one.php', // relative URL of job script
+    '/job_one.php', // URL to job script, relative to DOCROOT
     array( // arguments passed to the job script
         'starting_script_name' => $_SERVER['PHP_SELF'],
         'initiated' => $timestampNow,
