@@ -15,14 +15,18 @@ The current documentation pages are:
 - [Web API](http://files.zend.com/help/Zend-Server-6/zend-server.htm#job_queue_methods.htm)
 - [Performance](http://files.zend.com/help/Zend-Server-6/zend-server.htm#optimizing_job_queue_performance.htm)
 
-## Standalone Server Samples
+## The Basics - Examples Introducing Job Queue
 Run the samples by visiting the `job_starter_*.php` files in your browser.
 
 1. Begin by taking a look at `job_starter_non_existent_target.php`
 2. Then see `job_starter_statuses.php` and `job_statuses.php`
 3. Next, look at a recurring job with `job_starter_recurring.php` and `job_one.php`
 4. See two jobs, one a predecessor of the other, in `job_starter_predecessor_sample_1.php`, `job_A_predecessor_sample_1.php`, and `job_B_predecessor_sample_1.php`
+5. TODO - Classic producer-consumer pipeline, in which one job produces information required by another, both jobs running simultaneously.
+6. TODO - A parent job which depends upon the completion of child jobs in order for the entire workflow to be considered complete.
 
-## Cluster Samples
-I will add sample scripts specfic to a Zend Server cluster.
+## More Advanced Examples
+
+## Job Queue "Design Patterns"
+Is this "too much?" An idea for workflow "Templates" in a sense - arrangements of collections of jobs for solving various processing problems. A full set of examples in the previous two sections would probably be sufficient.
 

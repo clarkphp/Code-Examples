@@ -34,7 +34,7 @@
    Starter -> creates Job B, telling it that Job A is its predecessor, does NOT
        specify any scheduling informtion whatsoever.
    Jobs A does its work, and upon completion, job B begins running. The jobs
-       writ their results to separate output files. 
+       write their results to separate output files. 
    Look at the output files and the Overview | Job Queue screen to see what
        happens. You should see Job B "Waiting" until Job A finishes, a nonzero
        number next to "Jobs waiting for predecessor".
