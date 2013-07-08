@@ -7,7 +7,8 @@ else
 $url = "http://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 
 $file_flag = 'flagme';
-$max_jobs=10;
+$max_jobs = 4; // Note this value does not have to remain below zend_jobqueue.max_http_jobs,
+    // but if it is higher, you will get "Job Queue reached a high concurrency level" GUI notifications.
 $job_name = "parapapa";
 $query = array ('name'=>$job_name);
 
@@ -48,12 +49,12 @@ Check ZS GUI for Failed Jobs
 CHECK ZS GUI for Success Jobs
 <a href="$url?step=6">Step=6</a>: get list of jobs - should be showing successful
 <a href="$url?step=7">Step=7</a>: delete the test jobs
-CHECK ZS GUI for Verifying Deleted Jobs
+<a href="$url?step=8">Step=8</a>: get list of jobs - should show empty array
+Also CHECK ZS GUI for Verifying Deleted Jobs
 </pre>
 EOT;
 
-
-if ((isset($_GET['step'])) && ($_GET['step']>0) && ($_GET['step']<8)) {
+$_GET['step'] = (integer) $_GET['step'];
   switch ($_GET['step']) {
 
     case 1:
@@ -71,6 +72,7 @@ if ((isset($_GET['step'])) && ($_GET['step']>0) && ($_GET['step']<8)) {
 
     case 3:
     case 6:
+    case 8:
       echo "<pre>".print_r($q->getJobsList($query),1)."</pre>\n";
     break;
 
@@ -100,12 +102,11 @@ if ((isset($_GET['step'])) && ($_GET['step']>0) && ($_GET['step']<8)) {
     break;
 
     default;
-      echo "You need to set URL with ?step=1/2/3/4/5/6<br>\n";
+      echo "You need to set URL with a ?step= value in valid range. See the instructions above.<br>\n";
     break;
 
   } // switch $_GET['step']
 
-} // if $_GET['step'] valid
 
 } // else
-?>
+
