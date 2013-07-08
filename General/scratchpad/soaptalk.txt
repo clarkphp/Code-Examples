@@ -1,0 +1,11 @@
+Browser (someone updating CC data) SOAP Client
+ SOAP requests to SOAP Server (using method updateCCInfo($data) to update cc data)
+
+Web Server (Client Server) 
+
+Web Server (SOAP Server)
+ Has a class with a method called updateCCInfo($ccData)
+ Talks to DB Server (same machine or remote access to db server)
+
+Database Server (Stores CC data)
+
