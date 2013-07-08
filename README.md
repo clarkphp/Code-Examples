@@ -1,18 +1,4 @@
-Code Examples for PHP, Zend Framework.
-================================
+# Code Examples for PHP, Zend Server, Zend Framework, IBM i
 
-Notes will appear in various files, and will be documented here. For now, just a quick scratchpad.
-------------------------
-
-Some CGI-related URLs
-------------------------
-
-More to come, but these are a few relevant links:
-
-* *[General Installation Considerations](http://www.php.net/manual/en/install.general.php).*
-* *[CGI and command line setups](http://www.php.net/manual/en/install.unix.commandline.php).*
-* *[Security When Installed as CGI binary](http://php.net/manual/en/security.cgi-bin.php).*
-* *[Changes in SAPI modules in PHP 5.3](http://www.php.net/manual/en/migration53.sapi.php).*
-* *[Wikipedia: Common Gateway Interface](http://en.wikipedia.org/wiki/Common_Gateway_Interface).*
-* *[Wikipedia: FastCGI](http://en.wikipedia.org/wiki/FastCGI).*
+The directory names should be self-explanatory. See the README.md files in each directory. This is a combination of experiments, quick how-tos, and deeper tutorials. It is now, and will always be, a work in progress.
 
