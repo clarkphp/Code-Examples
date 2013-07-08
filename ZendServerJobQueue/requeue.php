@@ -54,7 +54,7 @@ Also CHECK ZS GUI for Verifying Deleted Jobs
 </pre>
 EOT;
 
-$_GET['step'] = (integer) $_GET['step'];
+$_GET['step'] = isset($_GET['step']) ? (integer) $_GET['step'] : 0;
   switch ($_GET['step']) {
 
     case 1:
