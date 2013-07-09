@@ -220,7 +220,7 @@ echo 'Query: ' . $sql . PHP_EOL . PHP_EOL;
 # Note that echo is a function (language construct) that takes parameters, separated by commas:
 # Language constructs do not require the use of parantheses.
 # echo does the concatenation internally
-$string = 'Hello ', 'World', PHP_EOL, PHP_EOL, 'Query: ', $sql, PHP_EOL, PHP_EOL;
+echo 'Hello ', 'World', PHP_EOL, PHP_EOL, 'Query: ', $sql, PHP_EOL, PHP_EOL;
 
 exit;
 echo "\nLogical operators\n";
@@ -463,6 +463,17 @@ foreach ($array as &$value) {
 $definedFunctions = get_defined_functions();
 echo 'There are ' . count($definedFunctions['internal']) . ' functions on my system' . PHP_EOL;
 
+//---
+// Function names are case INsensitive!
+// this code will parse okay
+function functionNamesAreCaseInsensitive() {
+}
+
+// PHP will report "PHP Fatal error:  Cannot redeclare functionnamesarecaseinsensitive()"
+// and will exit (stop running )
+function functionnamesarecaseinsensitive() {
+}
+//---
 
 # Optional parameters
 $junkyString = "|this is my string,hi,\n|";
