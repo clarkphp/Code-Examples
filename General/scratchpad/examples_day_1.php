@@ -215,8 +215,12 @@ $sql = 'SELECT first_name, last_name, city, state, postal_code'
      . ' FROM employee'
      . ' WHERE salary <= ' . $salaryLevel;
 
-echo 'Query: ' . $sql . EOL . EOL;
+echo 'Query: ' . $sql . PHP_EOL . PHP_EOL;
 
+# Note that echo is a function (language construct) that takes parameters, separated by commas:
+# Language constructs do not require the use of parantheses.
+# echo does the concatenation internally
+$string = 'Hello ', 'World', PHP_EOL, PHP_EOL, 'Query: ', $sql, PHP_EOL, PHP_EOL;
 
 exit;
 echo "\nLogical operators\n";
