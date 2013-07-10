@@ -1,45 +1,92 @@
 <?php
-if (class_exists('ZendJobQueue'))
-  $q = new ZendJobQueue();
-else
-  die ('Jobqueue class does not exist within this PHP runtime. good bye!');
+/*
+ * This example script demonstrates basic concepts related to Job Queue:
+ * 1. shows the names and values of several JQ-related class constants
+ * 2. setting a job's status from within the job script
+ * 3. obtaining a list of jobs JQ is aware of, whehter waiting, running, or completed
+ * 4. restarting jobs that have completed
+ * -. more...
 
-$url = "http://".$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
+ * See the usage message in the code below for instructions.
+*/
+if (!class_exists('ZendJobQueue')) {
+    exit('<p>Jobqueue class does not exist within this PHP runtime. good bye!</p>');
+}
 
-$file_flag = 'flagme';
-$max_jobs = 4; // Note this value does not have to remain below zend_jobqueue.max_http_jobs,
-    // but if it is higher, you will get "Job Queue reached a high concurrency level" GUI notifications.
-$job_name = "parapapa";
-$query = array ('name'=>$job_name);
+$q = new ZendJobQueue();
+
+$url = "http://{$_SERVER['HTTP_HOST']}{$_SERVER['PHP_SELF']}";
+
+// filesystem-based switch each job will inspect to see if it should fail or succeed
+$switchFilename = 'flag';
+
+/*
+Note that the MAX_JOBS value does not have to remain below zend_jobqueue.max_http_jobs,
+but if it is higher, you will get "Job Queue reached a high concurrency level" GUI notifications.
+*/
+define('MAX_JOBS', 4);
+
+$jobName = 'parapapa';
+$jobListQuery = array ('name' => $jobName);
 
 // Display Statuses for getJobsList()
 if (isset($_GET['s']) || isset($_GET['statuses'])) {
-  $arrS = array('ZendJobQueue::STATUS_PENDING','ZendJobQueue::STATUS_WAITING_PREDECESSOR','ZendJobQueue::STATUS_RUNNING','ZendJobQueue::STATUS_COMPLETED','ZendJobQueue::STATUS_FAILED','ZendJobQueue::STATUS_OK','ZendJobQueue::STATUS_LOGICALLY_FAILED','ZendJobQueue::STATUS_TIMEOUT','ZendJobQueue::STATUS_REMOVED','ZendJobQueue::STATUS_SCHEDULED','ZendJobQueue::STATUS_SUSPENDED','ZendJobQueue::JOB_STATUS_PENDING','ZendJobQueue::JOB_STATUS_WAITING_PREDECESSOR','ZendJobQueue::JOB_STATUS_RUNNING','ZendJobQueue::JOB_STATUS_COMPLETED','ZendJobQueue::JOB_STATUS_FAILED','ZendJobQueue::JOB_STATUS_OK','ZendJobQueue::JOB_STATUS_LOGICALLY_FAILED','ZendJobQueue::JOB_STATUS_TIMEOUT','ZendJobQueue::JOB_STATUS_REMOVED','ZendJobQueue::JOB_STATUS_SCHEDULED','ZendJobQueue::JOB_STATUS_SUSPENDED');
-  foreach ($arrS as $v) {
-    echo $v." = ".constant($v)."<br>\n";
-  }
-echo "<br><br>vardump(ZendJobQueue::STATUS_OK): ";
-var_dump(ZendJobQueue::STATUS_OK);
-echo "<br><br>vardump(ZendJobQueue::JOB_STATUS_OK): ";
-var_dump(ZendJobQueue::JOB_STATUS_OK);
+    $JqStatusConstants = array(
+        'ZendJobQueue::STATUS_PENDING',
+        'ZendJobQueue::STATUS_WAITING_PREDECESSOR',
+        'ZendJobQueue::STATUS_RUNNING',
+        'ZendJobQueue::STATUS_COMPLETED',
+        'ZendJobQueue::STATUS_FAILED',
+        'ZendJobQueue::STATUS_OK',
+        'ZendJobQueue::STATUS_LOGICALLY_FAILED',
+        'ZendJobQueue::STATUS_TIMEOUT',
+        'ZendJobQueue::STATUS_REMOVED',
+        'ZendJobQueue::STATUS_SCHEDULED',
+        'ZendJobQueue::STATUS_SUSPENDED',
+        'ZendJobQueue::JOB_STATUS_PENDING',
+        'ZendJobQueue::JOB_STATUS_WAITING_PREDECESSOR',
+        'ZendJobQueue::JOB_STATUS_RUNNING',
+        'ZendJobQueue::JOB_STATUS_COMPLETED',
+        'ZendJobQueue::JOB_STATUS_FAILED',
+        'ZendJobQueue::JOB_STATUS_OK',
+        'ZendJobQueue::JOB_STATUS_LOGICALLY_FAILED',
+        'ZendJobQueue::JOB_STATUS_TIMEOUT',
+        'ZendJobQueue::JOB_STATUS_REMOVED',
+        'ZendJobQueue::JOB_STATUS_SCHEDULED',
+        'ZendJobQueue::JOB_STATUS_SUSPENDED'
+    );
+    foreach ($JqStatusConstants as $v) {
+        echo "$v = " . constant($v) . '<br>';
+    }
+    echo '<br>Note especially these two:<br>ZendJobQueue::STATUS_OK: '
+       , ZendJobQueue::STATUS_OK
+       , '<br>ZendJobQueue::JOB_STATUS_OK: '
+       , ZendJobQueue::JOB_STATUS_OK
+       , '<br>';
 }
 
 // Job functionality
-if (isset($_GET['job'])) {
-  $status = file_get_contents($file_flag);
-  if ($status == 1)
-    ZendJobQueue::setCurrentJobStatus (ZendJobQueue::FAILED,"Setting Job Status FAILED");
-  else // status == 1
-    ZendJobQueue::setCurrentJobStatus (ZendJobQueue::OK,"Setting Job Status OK");
-}
-
-// All other steps
-else {
-
-echo <<<EOT
+if (isset($_GET['job']) && isset($_GET['job_status_switch'])) {
+    $jobStatus = file_get_contents($switchFilename);
+    if (false === $jobStatus) {
+        exit('Could not open status switch file. Check permissions.<br>');
+    }
+    if ($jobStatus === 'fail') {
+        ZendJobQueue::setCurrentJobStatus(ZendJobQueue::FAILED, 'Setting Job Status FAILED');
+        echo 'Setting Job Status ZendJobQueue::FAILED<br>';
+        return; // can also exit
+    }
+    ZendJobQueue::setCurrentJobStatus(ZendJobQueue::OK, 'Setting Job Status ZendJobQueue::OK');
+    echo 'Setting Job Status ZendJobQueue::OK<br>';
+} else { // All other steps
+    echo <<<EOT
 <pre><a href="$url">Usage:</a>
-If passing ?job - it acts as the job script, otherwise as the Steps script
-Check <a href="$url?s">status codes</a> by ?statuses or ?s
+Behaviour is controlled by URL query parameters.
+Passing ?job causes the script to act as a Job Queue job.
+    (Otherwise, as the Steps script)
+
+See relevant <a href="$url?statuses">status code constants</a> by passing by ?statuses
+
 <a href="$url?step=1">Step=1</a>: set flag fail
 <a href="$url?step=2">Step=2</a>: set X jobs which will fail
 Check ZS GUI for Failed Jobs
@@ -54,59 +101,69 @@ Also CHECK ZS GUI for Verifying Deleted Jobs
 </pre>
 EOT;
 
-$_GET['step'] = isset($_GET['step']) ? (integer) $_GET['step'] : 0;
-  switch ($_GET['step']) {
+    $step = isset($_GET['step']) ? (integer) $_GET['step'] : 0;
+    switch ($step) {
+        case 0:
+            // do nothing if no step query parameter was passed
+            break;
+        case 1:
+            if (file_put_contents($switchFilenameg, 'fail') === false) {
+                exit ('Could not write to flag file - check permissions for PHP. byebye!');
+            }
+            echo 'Flag file was set to fail<br>';
+            break;
 
-    case 1:
-      if (file_put_contents($file_flag,1)===false) die ('Could not write to flag file - check permissions for PHP. byebye!');
-      echo "Flag file was set to 1";
-    break;
+        case 2:
+            for ($i = 0; $i < MAX_JOBS; $i++) {
+                //$jobId = $q->createHttpJob("$url?job", array('microtime'=>microtime()), array('name'=>$jobName,'schedule_time' => date('Y-m-d h:i:s', strtotime('+1s'))) );
+                $jobId = $q->createHttpJob(
+                      "$url?job",
+                      array('microtime' => microtime()),
+                      array('name' => $jobName,
+                      'schedule_time' => date('Y-m-d h:i:s', strtotime('now')))
+                );
+                echo "New Job URL: $url ID: $jobId.<br>";
+            }
+            break;
 
-    case 2:
-      for ($i=0; $i<$max_jobs; $i++) {
-        //$job = $q->createHttpJob($url."?job", array('microtime'=>microtime()), array('name'=>$job_name,'schedule_time' => date('Y-m-d h:i:s', strtotime('+1s'))) );
-        $job = $q->createHttpJob($url."?job", array('microtime'=>microtime()), array('name'=>$job_name,'schedule_time' => date('Y-m-d h:i:s', strtotime('now'))) );
-        echo "New Job URL: $url ID: $job.<br>\n";
-      }
-    break;
+        case 3:
+        case 6:
+        case 8:
+            echo '<pre>' . print_r($q->getJobsList($jobListQuery), true) . '</pre>';
+            break;
 
-    case 3:
-    case 6:
-    case 8:
-      echo "<pre>".print_r($q->getJobsList($query),1)."</pre>\n";
-    break;
+        case 4:
+            if (file_put_contents($switchFilename, 'succeed') === false) {
+                exit ('Could not write to flag file - check permissions for PHP. byebye!');
+            }
+            echo 'Flag file was set to 0<br>';
+            break;
 
-    case 4:
-      if (file_put_contents($file_flag,0)===false) die ('Could not write to flag file - check permissions for PHP. byebye!');
-      echo "Flag file was set to 0";
-    break;
+        case 5:
+            $jobList = $q->getJobsList($jobListQuery);
+            $restartCounter = 0;
+            foreach($jobList as $v) {
+                if ($q->restartJob($v['id'])) {
+                    $restartCounter++;
+                }
+            }
+            echo "Restarted $restartCounter Jobs<br>";
+            break;
 
-    case 5:
-      $job_list = $q->getJobsList($query);
-      $restart_counter = 0;
-      foreach($job_list as $v) {
-        if ($q->restartJob($v['id']))
-          $restart_counter++;
-      }
-      echo "Restarted $restart_counter Jobs.";
-    break;
+        case 7:
+            $jobList = $q->getJobsList($jobListQuery);
+            $deleteCounter = 0;
+            foreach($jobList as $v) {
+                if ($q->removeJob($v['id'])) {
+                    $deleteCounter++;
+                }
+            }
+            echo "Deleted $deleteCounter Jobs<br>";
+            break;
 
-    case 7:
-      $job_list = $q->getJobsList($query);
-      $delete_counter = 0;
-      foreach($job_list as $v) {
-        if ($q->removeJob($v['id']))
-          $delete_counter++;
-      }
-      echo "Deleted $delete_counter Jobs.";
-    break;
-
-    default;
-      echo "You need to set URL with a ?step= value in valid range. See the instructions above.<br>\n";
-    break;
-
-  } // switch $_GET['step']
-
-
-} // else
+        default;
+            echo 'You need to set URL with a ?step= value in valid range. See the instructions above.<br>';
+            break;
+    }
+}
 
