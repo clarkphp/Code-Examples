@@ -3,7 +3,7 @@
  * This example script demonstrates basic API concepts related to Job Queue:
  * 1. shows the names and values of several JQ-related class constants
  * 2. setting a job's status from within the job script
- * 3. obtaining a list of jobs JQ is aware of, whehter waiting, running, or completed
+ * 3. obtaining a list of jobs JQ is aware of, whether waiting, running, or completed
  * 4. restarting jobs that have completed
  *
  * See the usage message in the code below for instructions.
