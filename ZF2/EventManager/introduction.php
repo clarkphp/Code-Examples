@@ -81,6 +81,10 @@ try {
     );
 } catch (EventManager\Exception\InvalidArgumentException $e) {
     echo $e->getMessage(), PHP_EOL;
+    exit;
+} catch (Zend\Stdlib\Exception\InvalidCallbackException $e) {
+    echo 'attach() does not throw EventManager\Exception\InvalidCallbackException if given an invalid callback: ', $e->getMessage(), PHP_EOL, get_class($e), PHP_EOL;
+    exit;
 }
 
 // these parameters become part of the event when it is triggered
@@ -93,8 +97,13 @@ try {
         null, // optional 'target', discussed in later examples
         $params // optional array of arguments available to the event (and to listeners handling the event)
     );
-} catch (Exception\InvalidCallbackException $e) {
+
+    // It is NOT an error to trigger an event that has not been registered with the EventManager
+    $events->trigger('iDoNotExist');
+
+} catch (EventManager\Exception\InvalidCallbackException $e) {
     echo $e->getMessage(), PHP_EOL;
+    exit;
 }
 
 // The remaining callbacks which act as listeners (handlers) of events
