@@ -25,14 +25,13 @@
 # Zend Studio Help | Zend Studio for Eclipse User Guide | Welcome to the Online Help | Tasks | Working with WSDL
 
 
-# Exercise: Web Services - slide 302
+# Web Services
 //Create a new controller that handle Soap requests for listing all the items in the blog.
 //Create:
 //- a new controller for handling the request
 //- a library item that can be exposed using Soap that returns an array of all the items in the Blog
 //- a Soap client in a separate file for making the Soap requests, which uses var_dump to display the results.
 
-// Slide 302 Exercise
 # application/model/soap.php - create the WSDL from this file
 require_once APPLICATION_PATH . '/model/blogs.php';
 class SoapArticle

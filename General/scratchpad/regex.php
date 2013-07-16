@@ -1,5 +1,5 @@
 <?php
-// regular expressions - slides 101 to 122
+// regular expressions
 // http://www.regular-expressions.info/
 // http://www.regular-expressions.info/tutorial.html
 // http://www.visibone.com/regular-expressions/
@@ -31,7 +31,6 @@ echo (preg_match('/^the\Z/', 'the') ? 'matched' : 'not matched') . PHP_EOL;
 echo (preg_match('/^the\Z/', "the\nthe\n") ? 'matched' : 'not matched') . PHP_EOL;
 echo (preg_match('/^the\z/', "the\nthe\n") ? 'matched' : 'not matched') . PHP_EOL;
 exit;
-// Check Your Understanding - slide 104
 // see http://php.net/preg_match_all
 $pattern = '#(thor|thr)ough#';
 $string = 'Hey, throughout the whole day, I\'m thoroughly stoked, even though my throat hurts.';
@@ -58,7 +57,6 @@ echo EX_DELIMITER_STR;
 
 
 exit;
-// Check Your Understanding - slide 109
 // Alter the following to match text before the @ in an email address
 echo "Match text before the @ in an email address - does not work\n";
 $pattern = '/[A-Za-z0-9._]+@/';
@@ -94,7 +92,7 @@ print_r($matches);
 
 echo EX_DELIMITER_STR;
 
-echo "Exercise slide 112: validating a URL\n";
+echo "validating a URL\n";
 $pattern = '/^[-\w\.]+\.[A-Za-z]{2,4}$/';
 $address = 'www.bbc.co.uk';
 $address = 'news.bbc.co.uk';
@@ -167,7 +165,7 @@ if (validate_us_phone_number($phone_number_good)) {
 }
 echo EX_DELIMITER_STR;
 
-// Slide 119 - Other string-processing functions can be faster than using regex.
+//Other string-processing functions can be faster than using regex.
 $test_string = 'I have alphabetic and 1 or 2 numeric characters only.';
 echo ctype_alnum($test_string)
    ? "Alphanumeric only\n"
@@ -189,18 +187,17 @@ if (false !== strpos($test_string, 'have')) { // again, note possible return val
 }
 
 
-// Exercise slide 120 (use myfile_slide_120.txt)
 echo preg_replace('/C\+\+|Java/',
                   'PHP',
-                  file_get_contents('myfile_slide_120.txt'))
+                  file_get_contents('input_file.txt'))
    . EX_DELIMITER_STR;
 
 echo preg_replace(array('/C\+\+/', '/Java/'),
                   'PHP',
-                  file_get_contents('myfile_slide_120.txt'))
+                  file_get_contents('input_file.txt'))
    . EX_DELIMITER_STR;
 
-///// Slide 114 - More examples; probably should modify before using them:
+// More examples; should modify before using them:
 if (preg_match("/ell/", "Hello World!", $matches)) {
 	echo "Match was found <br />";
 	echo $matches[0];

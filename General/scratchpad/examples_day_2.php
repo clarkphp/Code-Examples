@@ -1,5 +1,5 @@
 <?php
-/* Examples - Class Day 2  */
+/* Examples*/
 
 // references
 $original = 1;
@@ -35,8 +35,6 @@ $a[] = myFunctionReturnsAnObject(); // In PHP 5, do this.
 // In PHP 4, the second form would give $a a COPY of the object, instead of the actual object itself.
 // In PHP 5, it gives you the actual object itself.
 
-// exercise - slide 59
-// different versions of uppercasing exercise
 function makeArrayUpper($arr) {
 	if (!is_array($arr)) {
 		return false;
@@ -99,14 +97,6 @@ var_dump($home);
 list($myusername,,,,,$home) =  explode(":", $data);
 //=============================================
 
-
-
-
-
-
-
-
-# elseif exercise - handling weekend days
 $EOL = '<br />';
 $dayOfWeek = 'Friday';
 if ('Friday' === $dayOfWeek) {
@@ -120,7 +110,7 @@ if ('Friday' === $dayOfWeek) {
 
 
 
-# switch statement exercise
+# switch statement
 $color = 'Red';
 switch ($color) {
 	case 'Red':
@@ -158,7 +148,7 @@ switch (true) {
 
 exit;
 
-// array iteration exercise
+// array iteration
 $array = array(
     1 => range(1, 4),
     2 => range(1, 4),
@@ -440,13 +430,12 @@ tmpfile();
 
 //fpassthru();
 
-# Exercise: Using fopen() and fclose()
+# Using fopen() and fclose()
 $fh = fopen('myfile.txt', 'r') or die("Cannot open file<br />");
 // do something here
 fclose($fh);
 //
 //
-# Exercise: Working with files
 $fh = fopen('myfile.txt', 'r') or die("Cannot open file<br />");
 while (! feof($fh)) {
 	echo  fgets($fh) . '<br />';
@@ -454,7 +443,6 @@ while (! feof($fh)) {
 fclose($fh);
 echo $sec . ' ' . $usec . "\n";
 
-// Exercise slide 78
 $dirs = glob('../application/views/scripts/*');
 foreach ($dirs as $dir) {
         foreach( glob("$dir/*") as $file) {

@@ -97,12 +97,12 @@ exit;
 var_dump(array('value1', 'key2' => 'value2'));
 
 exit;
-echo "\narrays exercise - slide 21 - starting array\n";
+echo "\nstarting array\n";
 $var = array('2' => 1, 3);
 var_dump($var);
 
 exit;
-echo "\narrays exercise possible answers\n";
+echo "\narrays\n";
 $var = array('2' => 1, 3 => 3, 'b' => 4, 4 => 2);   
 var_dump($var);
 $var = array('2' => 1, 3, 'b' => 4, 2);
@@ -139,7 +139,7 @@ $size = count($count_message);
 echo "\n$size\n";
 
 exit;
-echo "\narray quiz - slide 24\n";
+echo "\narray\n";
 $array1 = array('color' => 'red', 2, 4);
 $array2 = array('a', 'b', 'color' => 'green', 'shape' => 'trapezoid', 4);
 print_r($array1);
@@ -333,7 +333,7 @@ if (fopen() or die('error message')) {
 
 }
 
-# if ... else exercise
+# if ... else
 $EOL = '<br />';
 $dayOfWeek = 'Thursday';
 if ('Friday' === $dayOfWeek) {
@@ -371,7 +371,7 @@ exit;
 // Simple ecommerce (Credit card verfication calculation) example using if and switch
 // http://www.zend.com/code/codex.php?ozid=80&single=1
 
-echo "\nConditional exercise\n";
+echo "\nConditional\n";
 $a = true;
 $b = false;
 
@@ -447,7 +447,7 @@ foreach ($array as $key => $value) {
 }
 
 exit;
-echo "\nForeach exercise - slide 39\n";
+echo "\nForeach \n";
 $array = explode(' ', 'Zend Training - Building Security into Your PHP Applications');
 foreach ($array as $key => $value) {
 	$array[$key] = strtoupper($value);
@@ -515,7 +515,7 @@ echo 'No way to pass only $required and third arguments: ' . optional_arguments(
 // see http://www.php.net/manual/en/functions.arguments.php#functions.arguments.default
 // for a good example, see http://php.net/mktime
 
-// writing functions exercise - slide 46
+// writing functions
 // previous Student code
 //function getName($firstName, $lastName, $middleInitial) {
 //

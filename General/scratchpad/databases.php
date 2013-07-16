@@ -25,7 +25,7 @@
 # Request a persistent connection, rather than creating a new connection.
 # See Connections and Connection management in PHP manual for more information on this attribute.
 
-# Exercise: Database Connections - slide 264
+# Database Connections
 # See also http://www.php.net/manual/en/ref.pdo-mysql.connection.php for proper DSN (data source name)
 //    public static function getAdapter()
 //    {
@@ -47,7 +47,7 @@
 //    }
 
 
-# Exercise Sessions - slide 165
+# Sessions
 // Something like this in View_Helper_Columnleft::load() plus the
 // place where it's assigned in articleController
 
@@ -67,7 +67,7 @@ if (isset($_SESSION['lastread'])) {
 EOQ;
 }
 
-# Exercise Email: slide 174
+# Email
 // In articleController.php
 if (defined('ADMIN_EMAIL')) {
     mail(ADMIN_EMAIL, 'New posting', 'A new comment has been posted');

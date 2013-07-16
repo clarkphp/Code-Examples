@@ -13,8 +13,7 @@ cd /usr/local/firefox/plugins/
 sudo cp /usr/lib/adobe-flashplugin/libflashplayer.so .
 
 */
-// Exercise Slide 82
-Exercise 82 reference info:
+//reference info:
 User/password is administrator/password
 
 http://www.php.net/manual/en/book.stream.php

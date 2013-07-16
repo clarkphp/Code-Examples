@@ -243,7 +243,6 @@ echo 'Line ' . __LINE__ . ': '. $foo->aStaticMethod();
 /////////
 
 /////////////////
-// Exercise slide 201
 // Create a static method called changeCase() in a class called Functions
 // that will change a given string to lowercase or uppercase based on a parameter
 
@@ -252,11 +251,6 @@ echo Functions::changeCase($string, 'upper');
 echo Functions::changeCase($string, 'lower');
 echo Functions::changeCase($string, 34);
 
-/**
- * Class exercise involving classes.
- * Hey, an object-oriented joke!
- * Not a very good one, I guess...
- */
 class Functions
 {
     /**
@@ -286,7 +280,6 @@ class Functions
 }
 
 /////////
-// Another solution to slide 201 exercise
 //class Functions {
 //	static function changeCase($str, $doLower) {
 //		if ($doLower) {
@@ -399,7 +392,7 @@ class newClass extends myClass
 $obj = new newClass();
 echo $obj->value . "<br />";
 
-// Exercise on Inheritance: slide 209
+// Inheritance
 class myClass1
 {
     private $var = 1;
@@ -416,7 +409,7 @@ class myClass2 extends myClass1
 $obj = new myClass2();
 echo $obj->getVar();
 
-// Overriding Methods - slide 210
+// Overriding Methods
 class AdminUser extends User
 {
     public function doUserStuff()
@@ -460,7 +453,7 @@ class test2 extends test1
 $test = new test2();
 $test->f1();
 
-// visibility and overriding - slide 213
+// visibility and overriding
 class class1
 {
     public function test()
@@ -626,8 +619,7 @@ interface MobilePhone
     public function recordVoiceNote();
 }
 
-// Interface Exercise: slide 219
-// What is the result of this code?
+// Interfaces
 interface myInterface {
     function test();
 }

@@ -4,9 +4,6 @@
 # are much better for normal email needs in PHP programs.
 # PHP's mail() function is best reserved for very low volume, notification scenarios.
 
-
-// exercise 174
-
 // In articleController.php
 
 if (defined('ADMIN_EMAIL')) {

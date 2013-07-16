@@ -17,7 +17,6 @@ exit;
 //echo ini_get('session.save_path') . '<br />';
 //exit;
 
-// slide 163
 session_start();
 echo "The session id is " . session_id() . "\n";
 if (isset($_SESSION['arraydata'])) {
@@ -31,7 +30,6 @@ if (isset($_SESSION['arraydata'])) {
 exit;
 
 
-// Exercise slide 165
 // Solution will look something like this in View_Helper_Columnleft::load() plus the 
 // place where it's assigned in articleController
 
@@ -51,7 +49,6 @@ exit;
 //EOQ;
 //}
 
-// Email exercise slide 174
 // In ArticleController.php
 
 //if (defined('ADMIN_EMAIL')) {

@@ -1,6 +1,6 @@
 <?php
 /*
- * forged http request headers - slide 156
+ * forged http request headers
 
 GET /admin HTTP/1.0
 Cookie: isAdmin=1
@@ -8,7 +8,7 @@ Cookie: isAdmin=1
  */
 
 /*
- * Cookies exercise slide 158
+ * Cookies
  * Somewhere in views/scripts/index/index.phtml
  */
 ?>

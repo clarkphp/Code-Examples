@@ -26,7 +26,7 @@ echo 'Hello ' . htmlspecialchars($_GET["name"]) . '!';
 
 
 
-// Exercise: GET and POST slide 139
+// GET and POST
 // Form that submits both get and post data simultaneously
 ?>
 <form method="POST" action="?get=data">
@@ -43,14 +43,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 echo '</pre>';
 exit;
 
-// Output buffering - slide 143
+// Output buffering
 ob_start();
 echo "This goes in the buffer."; // never appears in output.
 $value = strlen(ob_get_clean());
 echo "Buffer length: $value bytes<br />";
 exit;
 
-// Exercise buffers - slide 144
+// buffers
 // Uppercase all code
 $dispatcher = new ZBlog_Dispatcher();
 ob_start();
@@ -59,7 +59,7 @@ $data = ob_get_clean();
 echo strtoupper($data);
 
 
-// Browser caching exercise slide 150
+// Browser caching headers
 $eTag = "$entryId-$entry->modified";
 
 header('Expires: '.gmdate("D, d M Y H:i:s", $entry->modified+31536000) . " GMT");

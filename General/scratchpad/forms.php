@@ -62,7 +62,7 @@ by the server, it makes sense to do so. Also is more user friendly.
 
 Remember that javascript can be altered by a malicious user, so server-side validation MUST still be performed on all form data!
 
-Exercise: Form Validation
+Form Validation
 Age could be checked with ctype_digit()
 
 Phone number could be checked with preg_match, since you can have (989) 123-4567,
@@ -75,7 +75,6 @@ Less than 255, obviously strlen().
 
 First and last name - I would use something more robust than strpos($inputString, ' ').
 
-Slide 139 Exercise 
 Form that submits both GET and POST and the same time.
 
 */
