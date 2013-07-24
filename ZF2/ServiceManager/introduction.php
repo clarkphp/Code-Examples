@@ -86,7 +86,7 @@ echo 'Using get() method, the previously-registered object can be retrieved.', P
 $service = $sm->get('object-service');
 var_dump($service); echo PHP_EOL;
 
-echo 'Use setInvokableClass() to register a service using the name of a class. Then use create() method to retrieve an instance of that class.', PHP_EOL;
+echo 'Use setInvokableClass() to register a service using the name of a class. Then use either get() or create() method to retrieve an instance of that class.', PHP_EOL;
 
 try {
     $sm->setInvokableClass('invokable-class', 'SimpleClass');
@@ -101,9 +101,10 @@ try {
 }
 
 try {
-    echo 'Retrieve the service we just registered', PHP_EOL;
-    $service = $sm->get('invokable-class');
-    var_dump($service);
+    echo 'Retrieve the service we just registered, first using get(), then using create().  You would normally use get(). Remember, each retrieval yields a new instance.', PHP_EOL;
+    $service1 = $sm->get('invokable-class');
+    $service2 = $sm->create('invokable-class');
+    var_dump($service1, $service2, $service1 === $service2);
     echo PHP_EOL;
 } catch (ServiceManager\Exception\ServiceNotFoundException $e) {
     echo 'Line ', __LINE__, ': ', get_class($e), ' - ', $e->getMessage(), PHP_EOL, PHP_EOL;
