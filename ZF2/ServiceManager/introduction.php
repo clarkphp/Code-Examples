@@ -63,7 +63,8 @@ echo 'Can check to see if the SM can create the service by calling canCreate() m
 var_dump($sm->canCreate('some-service'));
 echo PHP_EOL;
 
-echo 'Register an object instance with the SM and show all registered services', PHP_EOL;
+echo 'Register an object instance with the SM and show all registered services', PHP_EOL
+    , 'This corresponds to the \'services\' key in a configuration array.', PHP_EOL;
 try {
     $sm->setService('object-service', $objectService);
 } catch (\Exception $e) {
@@ -82,7 +83,7 @@ echo 'Using get() method, the previously-registered object can be retrieved.', P
 $service = $sm->get('object-service');
 var_dump($service); echo PHP_EOL;
 
-echo 'Use setInvokableClass() to register a service using the name of a class. Then use either get() or create() method to retrieve an instance of that class.', PHP_EOL;
+echo 'Use setInvokableClass() to register a service using the name of a class. Then use either get() or create() method to retrieve an instance of that class.', PHP_EOL, 'This corresponds to the \'invokables\' key in a configuration array.', PHP_EOL;
 
 try {
     $sm->setInvokableClass('invokable-class', 'SimpleClass');
