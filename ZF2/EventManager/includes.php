@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL | E_STRICT);
 $pathToZf = '/usr/local/zend/share/ZendFramework2/library';
 set_include_path($pathToZf . PATH_SEPARATOR . get_include_path());
 

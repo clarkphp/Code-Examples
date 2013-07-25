@@ -117,7 +117,7 @@ function doListener($event)
 
 class doListener
 {
-    static function staticDoListener($event)
+    public static function staticDoListener($event)
     {
         $eventName = $event->getName();
         $params = $event->getParams();
@@ -128,7 +128,7 @@ class doListener
 
 class myEventHandlers
 {
-    function instanceMethodListener($event)
+    public function instanceMethodListener($event)
     {
         $eventName = $event->getName();
         $params = $event->getParams();
