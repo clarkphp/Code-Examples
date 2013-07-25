@@ -104,7 +104,7 @@ class Workhorse
 
     public function pullCart($weight = 'light', $direction = 'uphill')
     {
-        $params = array('weight' => $weight, 'direction' => $direction);
+        $params = compact('weight', 'direction');
         try {
             $this->em->trigger(
                 'start.' . __FUNCTION__, // typical in ZF2 to use the function/method name somewhere in the event name
