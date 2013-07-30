@@ -41,7 +41,6 @@ class Validator
 {
     public function validate(EventManager\Event $event)
     {
-        $eventName = $event->getName();
         $params = $event->getParams();
         $target = $event->getTarget();
 
