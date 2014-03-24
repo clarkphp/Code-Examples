@@ -1,6 +1,7 @@
 <h1>Data Cache Intro: Fetching, Storing, Deleting, Clearing Cache</h1>
 <?php
-// This function is defined at the bottom of this file
+require_once __DIR__ . '/dc-functions.php';
+
 listDatacacheDirectory();
 
 // a "key" is the name used to store or retrieve data from cache
@@ -118,28 +119,3 @@ echo '<p>Directories remain; all cache files are gone.</p>';
 listDatacacheDirectory();
 
 echo '<p>The difference between deleting and clearing is that deletion occurs by key name, whereas clearing removes all keys (actually a namespace can be specified, shown in another example later).</p>';
-function listDatacacheDirectory()
-{
-    $path = '/usr/local/zend/tmp/datacache/';
-    echo "<p>Listing of Data Cache directory hierarchy at $path</p>";
-    try {
-        $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path));
-        if ($iterator->valid()) {
-            echo '<table><tr><th>File/Directory</th><th>Pathname</th><th>Size</td><th>Modified</td></tr>';
-            foreach ($iterator as $file) {
-                if ('..' == $file->getFilename()) {
-                    continue;
-                }
-                echo sprintf('<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>',
-                    $file->isDir() ? 'Dir' : 'File',
-                    $file->getPathname(),
-                    $file->getSize(),
-                    date('Y-m-d h:i:s', $file->getMTime()));
-            }
-            echo '</table>';
-        }
-    } catch (Exception $e) {
-        echo '<p>Check the directory path to make sure it exists. Exiting...</p>';
-        exit;
-    }
-}

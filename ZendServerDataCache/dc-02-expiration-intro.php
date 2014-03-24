@@ -1,5 +1,7 @@
 <h1>Data Cache Intro: Expiration</h1>
 <?php
+require_once __DIR__ . '/dc-functions.php';
+
 // a "key" is the name used to store or retrieve data from cache
 // Keys can be "non-namespaced" - 'datum1'
 // They can be "namespaced" - 'group1::datum1','group2::datum1'
@@ -108,28 +110,3 @@ echo '<p>Directories remain; the deleted item\'s cache file is gone.</p>';
 listDatacacheDirectory();
 
 echo '<p>Lesson: Expired items are not "in the cache" but the files storing them remain on the filesystem until explicitly deleted, or cleared.</p>';
-function listDatacacheDirectory()
-{
-    $path = '/usr/local/zend/tmp/datacache/';
-    echo "<p>Listing of Data Cache directory hierarchy at $path</p>";
-    try {
-        $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path));
-        if ($iterator->valid()) {
-            echo '<table><tr><th>File/Directory</th><th>Pathname</th><th>Size</td><th>Modified</td></tr>';
-            foreach ($iterator as $file) {
-                if ('..' == $file->getFilename()) {
-                    continue;
-                }
-                echo sprintf('<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>',
-                    $file->isDir() ? 'Dir' : 'File',
-                    $file->getPathname(),
-                    $file->getSize(),
-                    date('Y-m-d h:i:s', $file->getMTime()));
-            }
-            echo '</table>';
-        }
-    } catch (Exception $e) {
-        echo '<p>Check the directory path to make sure it exists. Exiting...</p>';
-        exit;
-    }
-}
