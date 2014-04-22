@@ -26,7 +26,7 @@ $id = $q->createHttpJob(
     )
 );
 if (!is_int($id)) {
-    'Job was not created';
+    echo 'Job was not created';
     exit(1);
 }
 echo '<p>Job ', $id, ' scheduled for recurring runs.</p>'
