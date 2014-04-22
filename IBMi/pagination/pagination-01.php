@@ -102,10 +102,10 @@ readfile(__DIR__ . '/footer.html');
 /**
  * Display HTML Table Heading for resultset, with caption.
  *
- * @param array   $dataRow An associative array of one row/record of data
  * @param integer $pageNumber The current page being viewed
- * @param integer $pageTotal Total number of pages available, null to not display this
- * @param integer $numRecords Total number of records meeting the search criteria
+ * @param integer $pageTotal Total number of pages available
+ * @param integer $numRecords Total number of records meeting the search criteria, null to not display this
+ * @param array   $dataRow An associative array of one row/record of data; if provided, table header cells come from the array keys.
 */
 function displayTableHeader($pageNumber, $pageTotal, $numRecords = null, $dataRow = array()) {
     $numRecordsString = is_null($numRecords) ? '' : " ($numRecords total records)";
