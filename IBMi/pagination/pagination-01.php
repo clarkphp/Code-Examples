@@ -56,7 +56,7 @@ try {
     }
     // Add your appropriate filtering logic to the where clause
     $queryString = "SELECT $columnList FROM"
-        . " (select row_number() over (order by CUST_ID) as rowid, $columnList from SP_CUST) as t"
+        . " (select row_number() over (order by CUST_ID) as rowid, $columnList from SP_CUST optimize for $pageSize rows) as t"
         . " where t.rowid between $offset and $endingRow";
 
     $statement = db2_prepare($db, $queryString);
